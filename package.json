@@ -1,0 +1,31 @@
+{
+  "name": "babel-repl",
+  "version": "0.0.1",
+  "description": "babel repl",
+  "main": "index.js",
+  "bin": {
+    "babel-repl": "repl.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulserraino/babel-repl"
+  },
+  "keywords": [
+    "babel",
+    "repl",
+    "es6"
+  ],
+  "author": "Paul Serraino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulserraino/babel-repl/issues"
+  },
+  "homepage": "https://github.com/paulserraino/babel-repl",
+  "dependencies": {
+    "babel-core": "^5.5.8",
+    "debuglog": "^1.0.1"
+  }
+}
