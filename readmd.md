@@ -1,6 +1,8 @@
 #babel-repl
 node repl + [babel](https://github.com/babel/babel)
 
+[![NPM](https://nodei.co/npm/babel-repl.png)](https://nodei.co/npm/babel-repl/)
+
 ```bash
 npm install -g babel-repl
 ```
