@@ -11,6 +11,17 @@ npm install -g babel-repl
 $ babel-repl
 ```
 
+```js
+var repl = require('babel-repl');
+repl.start({
+  prompt: "es6>> ",
+  useColor: true
+});
+
+//for more options see
+//https://nodejs.org/api/repl.html#repl_repl_start_options
+```
+
 #License
 The MIT License (MIT)
 
