@@ -8,7 +8,7 @@ module.exports.start = function (options) {
     prompt: "> ",
     userGlobal: true,
     eval: function (code, context, file, cb) {
-      code = babel.transform( code.slice(1, code.length - 1) ).code;
+      code = babel.transform(code).code;
       defaultEval.call(this, code, context, file, cb);
     }
   };
