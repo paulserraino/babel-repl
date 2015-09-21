@@ -3,13 +3,49 @@ var debug = require('debuglog');
 var vm = require('vm');
 var babel = require('babel-core');
 
+// copy pasta from node source
+// lib/repl.js
+module.exports.defaultEval = function (code, context, file, cb) {
+  var err, result;
+  // first, create the Script object to check the syntax
+  try {
+    var script = vm.createScript(code, {
+      filename: file,
+      displayErrors: false
+    });
+  } catch (e) {
+    err = e;
+    debug('parse error %j', code, e);
+  }
+
+  if (!err) {
+    try {
+      if (this.useGlobal) {
+        result = script.runInThisContext({ displayErrors: false });
+      } else {
+        result = script.runInContext(context, { displayErrors: false });
+      }
+    } catch (e) {
+      err = e;
+      if (err && process.domain) {
+        debug('not recoverable, send to domain');
+        process.domain.emit('error', err);
+        process.domain.exit();
+        return;
+      }
+    }
+  }
+
+  cb(err, result);
+}
+
 module.exports.start = function (options) {
   var defaults = {
     prompt: "> ",
     userGlobal: true,
     eval: function (code, context, file, cb) {
       code = babel.transform( code.slice(1, code.length - 1) ).code;
-      defaultEval.call(this, code, context, file, cb);
+      module.exports.defaultEval.call(this, code, context, file, cb);
     }
   };
 
@@ -22,38 +58,3 @@ module.exports.start = function (options) {
   return repl.start(options);
 };
 
-// copy pasta from node source
-// lib/repl.js
-function defaultEval(code, context, file, cb) {
-    var err, result;
-    // first, create the Script object to check the syntax
-    try {
-      var script = vm.createScript(code, {
-        filename: file,
-        displayErrors: false
-      });
-    } catch (e) {
-      err = e;
-      debug('parse error %j', code, e);
-    }
-
-    if (!err) {
-      try {
-        if (this.useGlobal) {
-          result = script.runInThisContext({ displayErrors: false });
-        } else {
-          result = script.runInContext(context, { displayErrors: false });
-        }
-      } catch (e) {
-        err = e;
-        if (err && process.domain) {
-          debug('not recoverable, send to domain');
-          process.domain.emit('error', err);
-          process.domain.exit();
-          return;
-        }
-      }
-    }
-
-    cb(err, result);
-  }
