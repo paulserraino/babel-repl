@@ -3,8 +3,11 @@ var debug = require('debuglog');
 var vm = require('vm');
 var babel = require('babel-core');
 
-// copy pasta from node source
-// lib/repl.js
+/*
+* default eval method from node source
+* lib/repl.js
+*/
+
 module.exports.defaultEval = function (code, context, file, cb) {
   var err, result;
   // first, create the Script object to check the syntax
@@ -39,6 +42,10 @@ module.exports.defaultEval = function (code, context, file, cb) {
   cb(err, result);
 }
 
+/*
+* start babel repl
+*/
+
 module.exports.start = function (options) {
   var defaults = {
     prompt: "> ",
@@ -57,4 +64,3 @@ module.exports.start = function (options) {
 
   return repl.start(options);
 };
-
