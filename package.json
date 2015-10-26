@@ -26,7 +26,8 @@
   "homepage": "https://github.com/paulserraino/babel-repl",
   "dependencies": {
     "babel-core": "^5.5.8",
-    "debuglog": "^1.0.1"
+    "debuglog": "^1.0.1",
+    "minimist": "^1.2.0"
   },
   "engines": {
     "node": "0.10.x"
