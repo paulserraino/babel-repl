@@ -27,5 +27,8 @@
   "dependencies": {
     "babel-core": "^5.5.8",
     "debuglog": "^1.0.1"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
