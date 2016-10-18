@@ -49,7 +49,7 @@ module.exports.defaultEval = function (code, context, file, cb) {
 module.exports.start = function (options) {
   var defaults = {
     prompt: "> ",
-    userGlobal: true,
+    useGlobal: true,
     eval: function (code, context, file, cb) {
       code = babel.transform(code).code;
       module.exports.defaultEval.call(this, code, context, file, cb);
